@@ -1,0 +1,353 @@
+
+
+Grandbite · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GrandBite — Big flavour, grand bites.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ---------- Brand tokens (from your Figma) ----------
+     cream bg / tomato red / golden yellow / charcoal text
+     Poppins headings + Inter body, rounded corners        */
+  :root{
+    --cream:#FCF6EE;
+    --red:#E5402C;
+    --red-dark:#C7331F;
+    --gold:#F3B31C;
+    --charcoal:#2B2723;
+    --body:#6B655C;
+    --line:#EDE4D6;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--charcoal);
+    background:var(--cream);
+    line-height:1.5;
+  }
+  .display{ font-family:'Poppins',sans-serif; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 20px; }
+  img{ display:block; width:100%; height:100%; object-fit:cover; }
+ 
+  /* ---------- Buttons ---------- */
+  .btn{
+    font-family:'Poppins',sans-serif; font-weight:600; border:none;
+    cursor:pointer; border-radius:10px; padding:12px 20px; font-size:15px;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:active{ transform:translateY(1px); }
+  .btn-red{ background:var(--red); color:#fff; }
+  .btn-red:hover{ background:var(--red-dark); }
+  .btn-outline{ background:transparent; color:var(--charcoal); border:1.5px solid #d9d2c6; }
+  .btn-outline:hover{ border-color:var(--charcoal); }
+  .btn-gold{ background:var(--gold); color:var(--charcoal); white-space:nowrap; }
+  .btn-gold:hover{ background:#dc9f10; }
+  .add-btn{
+    font-family:'Poppins',sans-serif; font-weight:600; border:none; cursor:pointer;
+    background:var(--red); color:#fff; border-radius:9px; padding:7px 14px; font-size:13px;
+    transition:background .15s ease;
+  }
+  .add-btn:hover{ background:var(--red-dark); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--red); outline-offset:2px; }
+ 
+  /* ---------- Pills ---------- */
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(229,64,44,.10); color:var(--red);
+    border-radius:999px; padding:5px 12px;
+    font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; letter-spacing:.05em;
+  }
+  .pill .dot{ width:6px; height:6px; border-radius:99px; background:currentColor; }
+ 
+  /* ---------- Header ---------- */
+  header{ position:sticky; top:0; z-index:30; background:var(--cream); border-bottom:1px solid var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
+  .logo{ display:flex; align-items:center; gap:8px; }
+  .logo-mark{
+    width:30px; height:30px; border-radius:8px; background:var(--red); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'Poppins'; font-weight:800;
+  }
+  .logo-text{ font-family:'Poppins'; font-weight:700; font-size:20px; }
+  .nav-links{ display:flex; align-items:center; gap:28px; }
+  .nav-links a{ color:var(--charcoal); text-decoration:none; font-size:15px; font-weight:500; transition:color .15s ease; }
+  .nav-links a:hover{ color:var(--red); }
+  .nav-right{ display:flex; align-items:center; gap:12px; }
+  .loc{ color:var(--red); font-family:'Poppins'; font-size:13px; font-weight:600; }
+  .cart-badge{ background:#fff; color:var(--red); border-radius:99px; padding:0 7px; font-size:12px; font-weight:700; margin-left:6px; }
+  .hamburger{ display:none; background:none; border:none; font-size:22px; cursor:pointer; color:var(--charcoal); }
+ 
+  /* ---------- Hero ---------- */
+  .hero{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; padding:48px 0 64px; }
+  .hero h1{ font-family:'Poppins'; font-size:clamp(38px,6vw,64px); line-height:1.02; font-weight:800; margin:18px 0; }
+  .hero p{ color:var(--body); font-size:17px; max-width:440px; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+  .hero-img{ border-radius:20px; overflow:hidden; height:340px; box-shadow:0 20px 40px rgba(0,0,0,.12); }
+ 
+  /* ---------- Sections ---------- */
+  section.block{ padding:56px 0; }
+  .section-head{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:28px; }
+  .section-head h2{ font-family:'Poppins'; font-size:clamp(26px,4vw,34px); font-weight:700; }
+  .section-head p{ color:var(--body); margin-top:6px; }
+  .tags{ display:flex; gap:8px; }
+ 
+  /* ---------- Cards & grids ---------- */
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .card{ background:#fff; border:1px solid var(--line); border-radius:18px; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease; }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 16px 30px rgba(0,0,0,.10); }
+  .card-img{ height:160px; }
+  .card-body{ padding:16px; }
+  .card-title{ font-family:'Poppins'; font-weight:600; font-size:16px; }
+  .card-desc{ color:var(--body); font-size:13px; margin-top:6px; line-height:1.5; min-height:54px; }
+  .card-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:8px; }
+  .price{ font-family:'Poppins'; font-weight:700; font-size:18px; }
+ 
+  .vibe .card-img{ height:150px; }
+  .vibe .card-body{ padding:18px; }
+  .vibe .top{ display:flex; align-items:baseline; justify-content:space-between; }
+  .vibe .top h3{ font-family:'Poppins'; font-weight:700; font-size:18px; }
+  .vibe .from{ font-family:'Poppins'; color:var(--red); font-weight:600; font-size:14px; }
+  .vibe .card-desc{ min-height:auto; font-size:14px; }
+ 
+  /* ---------- Combo banner ---------- */
+  .combo{ background:var(--red); border-radius:18px; padding:26px 28px; color:#fff;
+          display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
+  .combo h3{ font-family:'Poppins'; font-weight:700; font-size:22px; }
+  .combo p{ font-size:14px; opacity:.92; margin-top:4px; }
+ 
+  /* ---------- Story ---------- */
+  .story{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; padding:64px 0; }
+  .story h2{ font-family:'Poppins'; font-size:clamp(28px,4vw,38px); font-weight:700; margin-top:14px; line-height:1.1; }
+  .story p{ color:var(--body); font-size:16px; margin-top:16px; line-height:1.6; }
+  .story-img{ border-radius:20px; overflow:hidden; height:300px; }
+ 
+  /* ---------- Footer ---------- */
+  footer{ background:var(--charcoal); color:#fff; }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; padding:48px 0; }
+  .foot-grid h4{ font-family:'Poppins'; font-weight:600; font-size:14px; margin-bottom:12px; }
+  .foot-grid ul{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .foot-grid a{ color:#b8b0a5; font-size:13px; text-decoration:none; }
+  .foot-grid a:hover{ color:#fff; }
+  .foot-about p{ color:#b8b0a5; font-size:13px; margin-top:12px; line-height:1.6; }
+  .socials{ display:flex; gap:12px; margin-top:14px; font-size:18px; }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,.1); }
+  .foot-bottom p{ color:#8f887d; font-size:12px; padding:20px 0; }
+ 
+  /* ---------- Floating cart ---------- */
+  #cart-float{
+    position:fixed; right:20px; bottom:20px; background:var(--charcoal); color:#fff;
+    font-family:'Poppins'; font-weight:600; font-size:14px; border-radius:99px; padding:12px 20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25); display:none; align-items:center; gap:10px;
+  }
+ 
+  /* ---------- Mobile: single-column stacked layout ---------- */
+  @media (max-width:820px){
+    .nav-links{ display:none; }
+    .nav-links.open{ display:flex; flex-direction:column; gap:12px; position:absolute; left:0; right:0; top:56px; background:var(--cream); padding:16px 20px; border-bottom:1px solid var(--line); }
+    .hamburger{ display:block; }
+    .loc{ display:none; }
+    .hero, .story, .grid-3, .foot-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } }
+</style>
+</head>
+<body>
+ 
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="wrap nav">
+      <div class="logo">
+        <span class="logo-mark">G</span>
+        <span class="logo-text">Grand<span style="color:var(--red)">Bite</span></span>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#menu">Menu</a>
+        <a href="#story">About</a>
+        <a href="#">Locations</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <span class="loc">Accra, Ghana</span>
+        <button class="btn btn-red">Order Now<span class="cart-badge" id="headerBadge" style="display:none">0</span></button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>
+      </div>
+    </div>
+  </header>
+ 
+  <!-- ================= HERO ================= -->
+  <section class="wrap hero">
+    <div>
+      <span class="pill"><span class="dot"></span>NOW DELIVERING ACROSS ACCRA</span>
+      <h1 class="display">Big flavour,<br>grand bites.</h1>
+      <p>Accra's favourite spot for massive flame-grilled burgers, tightly wrapped spiced shawarmas, and freshly brewed, refreshing boba tea.</p>
+      <div class="hero-actions">
+        <button class="btn btn-red">Order Now &rarr;</button>
+        <button class="btn btn-outline">See Menu</button>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://loremflickr.com/600/450/double,cheeseburger?lock=10" alt="Signature GrandBite double cheeseburger" onerror="this.parentElement.style.background='linear-gradient(135deg,#F0B267,#8f4d20)';this.remove()" />
+    </div>
+  </section>
+ 
+  <!-- ================= SELECT YOUR VIBE ================= -->
+  <section class="wrap block vibe">
+    <div class="section-head">
+      <div>
+        <h2 class="display">Select Your Vibe</h2>
+        <p>Crafted fresh daily in Accra with the absolute best local and imported ingredients.</p>
+      </div>
+    </div>
+    <div class="grid-3" id="vibeGrid"></div>
+  </section>
+ 
+  <!-- ================= OUR MENU ================= -->
+  <section class="wrap block" id="menu">
+    <div class="section-head">
+      <div>
+        <h2 class="display">Our Menu</h2>
+        <p>Fresh street flavours reimagined with modern culinary craftsmanship.</p>
+      </div>
+      <div class="tags">
+        <span class="pill"><span class="dot"></span>100% HALAL</span>
+        <span class="pill"><span class="dot"></span>LOCAL SOURCED</span>
+      </div>
+    </div>
+    <div class="grid-3" id="menuGrid"></div>
+  </section>
+ 
+  <!-- ================= COMBO BANNER ================= -->
+  <section class="wrap">
+    <div class="combo">
+      <div>
+        <h3 class="display">Combo Deal: Burger + Boba for only &#8373;55</h3>
+        <p>Choose any single-patty burger + any refreshing boba tea flavour. Available all week long!</p>
+      </div>
+      <button class="btn btn-gold">Claim Combo Deal &rarr;</button>
+    </div>
+  </section>
+ 
+  <!-- ================= OUR STORY ================= -->
+  <section class="wrap story" id="story">
+    <div>
+      <span class="pill"><span class="dot"></span>OUR STORY</span>
+      <h2 class="display">Accra street culture, refined for your cravings.</h2>
+      <p>From our flame-grilled beef burgers to our slow-roasted wraps and freshly brewed boba, every GrandBite plate is built on the bold, unmistakable taste of Accra street food — reimagined with modern craft and the best local and imported ingredients.</p>
+    </div>
+    <div class="story-img">
+      <img src="https://loremflickr.com/600/450/restaurant,interior?lock=50" alt="GrandBite restaurant interior in Accra" onerror="this.parentElement.style.background='linear-gradient(135deg,#E5402C,#F3B31C)';this.remove()" />
+    </div>
+  </section>
+ 
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="wrap foot-grid">
+      <div class="foot-about">
+        <div class="logo">
+          <span class="logo-mark" style="width:28px;height:28px">G</span>
+          <span class="logo-text" style="font-size:18px">GrandBite</span>
+        </div>
+        <p>Big flavour, grand bites — delivered fresh across Accra.</p>
+        <div class="socials"><span>&#128276;</span><span>&#128247;</span><span>&#128038;</span></div>
+      </div>
+      <div><h4 class="display">Menu</h4><ul><li><a href="#">Burgers</a></li><li><a href="#">Shawarma</a></li><li><a href="#">Boba</a></li><li><a href="#">Combos</a></li></ul></div>
+      <div><h4 class="display">Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Our Story</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h4 class="display">Visit</h4><ul><li><a href="#">Locations</a></li><li><a href="#">Order Now</a></li><li><a href="#">Delivery</a></li><li><a href="#">Hours</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><div class="wrap"><p>&copy; 2026 GrandBite. Accra, Ghana. All rights reserved.</p></div></div>
+  </footer>
+ 
+  <!-- ================= FLOATING CART ================= -->
+  <div id="cart-float">&#128722; <span id="cartText"></span></div>
+ 
+<script>
+  /* ---------------------------------------------------------
+     DATA — edit these arrays to change the cards.
+     To use your EXACT Figma photos: export each image from
+     Figma, put it next to this file, and change the `img`
+     value to the filename, e.g. img: "beef-burger.jpg"
+     --------------------------------------------------------- */
+  const flick = (kw, lock) => `https://loremflickr.com/600/450/${kw}?lock=${lock}`;
+  const fallback = {
+    burger:'linear-gradient(135deg,#F0B267,#B5652E)',
+    shawarma:'linear-gradient(135deg,#EBCB96,#C39355)',
+    boba:'linear-gradient(135deg,#CDA9E4,#8A6AAE)',
+    fries:'linear-gradient(135deg,#F6C94B,#DE952A)'
+  };
+ 
+  const vibes = [
+    { name:'Burgers', from:35, type:'burger', img:flick('cheeseburger,gourmet',11), desc:'Massive flame-grilled patties loaded with fresh toppings and premium custom cheeses.' },
+    { name:'Shawarma', from:30, type:'shawarma', img:flick('shawarma,wrap',20), desc:'Perfectly seasoned slow-roasted meats, pickled vegetables, and loaded garlic tahini wraps.' },
+    { name:'Boba (Bubble Tea)', from:20, type:'boba', img:flick('bubble,tea',30), desc:'Creamy, refreshing classic milk teas and tropical fruit mixes with chewy tapioca pearls.' }
+  ];
+ 
+  const menu = [
+    { name:'Classic Beef Burger', price:38, type:'burger', img:flick('beef,burger',12), desc:'Juicy single beef patty, fresh lettuce, red onion, tomatoes, and house burger sauce.' },
+    { name:'Chicken Shawarma Wrap', price:32, type:'shawarma', img:flick('chicken,shawarma',21), desc:'Spiced marinated chicken breast, pickled vegetables, fresh parsley, and garlic tahini.' },
+    { name:'Spicy Boba Milk Tea', price:22, type:'boba', img:flick('milk,tea,boba',31), desc:'Bold hand-brewed black tea with a sweet and fiery chilli-mango kick, loaded with pearls.' },
+    { name:'Double Cheese Burger', price:48, type:'burger', img:flick('cheeseburger',13), desc:'Two flame-grilled patties, double cheddar cheese layers, and caramelised sweet onions.' },
+    { name:'Beef Shawarma', price:36, type:'shawarma', img:flick('shawarma,kebab',22), desc:'Slow-roasted shaved beef, creamy traditional chickpeas hummus, and crispy pita strips.' },
+    { name:'Taro Boba', price:24, type:'boba', img:flick('taro,bubble,tea',32), desc:'Creamy vanilla-scented purple taro root blend served with fresh chewy brown sugar tapioca.' },
+    { name:'Loaded Fries', price:28, type:'fries', img:flick('loaded,fries,cheese',40), desc:'Crispy skin-on golden fries covered in cheese sauce, hot jalapeños, and crispy bacon bits.' },
+    { name:'Veggie Burger', price:35, type:'burger', img:flick('veggie,burger',14), desc:'Pan-grilled local halloumi cheese, fresh avocado, and tangy sun-dried tomato relish.' },
+    { name:'Passion-Fruit Boba', price:22, type:'boba', img:flick('fruit,bubble,tea',33), desc:'Vibrant tropical passion fruit green tea served with sweet tropical popping boba pearls.' }
+  ];
+ 
+  // Build an <img> that falls back to a colour block if it fails to load
+  function imgHtml(item){
+    return `<img src="${item.img}" alt="${item.name}" loading="lazy"
+              onerror="this.parentElement.style.background='${fallback[item.type]||fallback.burger}';this.remove()" />`;
+  }
+ 
+  // Render the "Select Your Vibe" cards
+  document.getElementById('vibeGrid').innerHTML = vibes.map(v => `
+    <div class="card">
+      <div class="card-img">${imgHtml(v)}</div>
+      <div class="card-body">
+        <div class="top"><h3 class="display">${v.name}</h3><span class="from">from &#8373;${v.from}</span></div>
+        <p class="card-desc">${v.desc}</p>
+      </div>
+    </div>`).join('');
+ 
+  // Render the menu cards
+  document.getElementById('menuGrid').innerHTML = menu.map((item, i) => `
+    <div class="card">
+      <div class="card-img">${imgHtml(item)}</div>
+      <div class="card-body">
+        <h3 class="card-title">${item.name}</h3>
+        <p class="card-desc">${item.desc}</p>
+        <div class="card-foot">
+          <span class="price">&#8373;${item.price}</span>
+          <button class="add-btn" data-price="${item.price}">Add +</button>
+        </div>
+      </div>
+    </div>`).join('');
+ 
+  // ---------- Cart logic ----------
+  let count = 0, total = 0;
+  const cartFloat = document.getElementById('cart-float');
+  const cartText  = document.getElementById('cartText');
+  const headerBadge = document.getElementById('headerBadge');
+ 
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      count += 1;
+      total += Number(btn.dataset.price);
+      cartText.textContent = count + ' item' + (count > 1 ? 's' : '') + ' · \u20B5' + total;
+      cartFloat.style.display = 'flex';
+      headerBadge.style.display = 'inline';
+      headerBadge.textContent = count;
+    });
+  });
+ 
+  // ---------- Mobile menu toggle ----------
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
+ 
