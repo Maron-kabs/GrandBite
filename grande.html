@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrandBite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">Grand<span>Bite</span></div>
+      <button class="hamburger" onclick="document.getElementById('nl').classList.toggle('open')">&#9776;</button>
+      <div class="nav-links" id="nl">
+        <a href="#menu">Menu</a>
+        <a href="#combos">Combos</a>
+        <a href="#story">Our Story</a>
+      </div>
+      <button class="cart-btn" onclick="openCart()">Cart (<span id="count">0</span>)</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="wrap hero">
+  <div>
+    <span class="eyebrow">Fresh &middot; Fast &middot; Flavour</span>
+    <h1>Big cravings, <em>bigger bites.</em></h1>
+    <p>From jollof to juicy burgers and cold boba &mdash; GrandBite brings Accra's tastiest picks straight to you.</p>
+    <div class="hero-cta">
+      <button class="btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Order now</button>
+      <button class="btn ghost" onclick="document.getElementById('combos').scrollIntoView({behavior:'smooth'})">See combos</button>
+    </div>
+  </div>
+  <div class="photo hero-photo">
+    <span class="emoji">&#127828;</span>
+    <img src="images/hero.jpg" alt="GrandBite meal" onerror="this.style.display='none'">
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="wrap sec" id="vibe">
+  <span class="eyebrow">Pick a lane</span>
+  <h2>Select Your Vibe</h2>
+  <p class="sub">Whatever mood you're in, there's a bite for it.</p>
+  <div class="cats">
+    <div class="cat"><div class="ic">&#127828;</div><h3>Burgers</h3><p>Stacked &amp; grilled</p></div>
+    <div class="cat"><div class="ic">&#127835;</div><h3>Rice Bowls</h3><p>Jollof &amp; more</p></div>
+    <div class="cat"><div class="ic">&#127839;</div><h3>Sides</h3><p>Fries &amp; wraps</p></div>
+    <div class="cat"><div class="ic">&#129380;</div><h3>Drinks</h3><p>Boba &amp; coolers</p></div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="wrap sec" id="menu">
+  <span class="eyebrow">Straight off the grill</span>
+  <h2>Our Menu</h2>
+  <p class="sub">Tap add and build your order.</p>
+  <div class="grid" id="menuGrid"></div>
+</section>
+
+<!-- COMBOS -->
+<section class="wrap sec" id="combos">
+  <span class="eyebrow">Better together</span>
+  <h2>Combo Deals</h2>
+  <p class="sub">More food, less cedis.</p>
+  <div class="combos" id="comboGrid"></div>
+</section>
+
+<!-- STORY -->
+<section class="wrap sec story" id="story">
+  <div class="photo">
+    <span class="emoji">&#128075;</span>
+    <img src="images/story.jpg" alt="GrandBite kitchen" onerror="this.style.display='none'">
+  </div>
+  <div>
+    <span class="eyebrow">Our Story</span>
+    <h2>Made in Accra, served with love</h2>
+    <p>GrandBite started with one grill and one belief: good food should be bold, fast, and made for sharing.</p>
+    <p>Today we serve up your favourites across the city &mdash; same fresh ingredients, same big flavour, every single time.</p>
+    <button class="btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Taste it yourself</button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="logo">Grand<span>Bite</span></div>
+      <p style="color:#9a9088;margin-top:8px;max-width:220px;font-size:14px">Accra's tastiest bites, delivered hot.</p>
+    </div>
+    <div><strong>Explore</strong><a href="#menu">Menu</a><a href="#combos">Combos</a><a href="#story">Our Story</a></div>
+    <div><strong>Contact</strong><a href="#">Osu, Accra</a><a href="#">+233 54 000 0000</a><a href="#">hello@grandbite.gh</a></div>
+  </div>
+  <div class="copy">&copy; 2026 GrandBite. All rights reserved.</div>
+</footer>
+
+<!-- cart -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer">
+  <div class="dhead"><h3>Your Order</h3><button class="close" onclick="closeCart()">&times;</button></div>
+  <div class="ditems" id="ditems"><p style="color:var(--muted)">Your cart is empty.</p></div>
+  <div class="dfoot">
+    <div class="dtotal"><span>Total</span><span id="total">GH&#8373; 0</span></div>
+    <button class="btn" style="width:100%" onclick="alert('Checkout coming soon!')">Checkout</button>
+  </div>
+</aside>
+
+<script src="script.js"></script>
+</body>
+</html>
